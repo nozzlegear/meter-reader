@@ -1,0 +1,7 @@
+fsharp.core
+taskbuilder.fs
+ahd.graphite
+cliwrap
+fsharp.data
+Dapper
+system.data.sqlclient
