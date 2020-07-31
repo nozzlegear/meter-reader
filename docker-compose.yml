@@ -1,0 +1,40 @@
+version: "3"
+services:
+    grafana:
+        image: "grafana/grafana"
+        restart: unless-stopped
+        ports:
+            - 3010:3000
+        volumes: 
+            - "grafana_storage:/var/lib/grafana"
+        depends_on:
+#            - graphite
+            - sql
+    sql:
+        image: "mcr.microsoft.com/mssql/server:2017-latest-ubuntu"
+        restart: unless-stopped
+        environment: 
+            SA_PASSWORD: "a-BAD_passw0rd"
+            ACCEPT_EULA: "Y"
+        ports: 
+            - 3011:1433
+        volumes:
+            - "sql_storage:/var/opt/mssql"
+        logging:
+            driver: none
+#    graphite:
+#        image: "graphiteapp/graphite-statsd"
+#        restart: unless-stopped
+#        environment:
+#            STATSD_INTERFACE: "tcp"
+#        ports:
+#            - 3011:2003
+#            - 3012:80
+#            - 3013:8125
+#            - 3014:8126
+#        volumes: 
+#            - "graphite_storage:/opt/graphite/storage"
+volumes:
+    grafana_storage:
+#    graphite_storage:
+    sql_storage:
