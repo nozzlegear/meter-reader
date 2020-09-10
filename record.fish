@@ -18,6 +18,8 @@ if test -z "$WATER_METER_SQL_PASSWORD"
     exit 1
 end
 
+echo ""
+
 # Run rtl_tcp in the background, redirecting its output to /dev/null
 rtl_tcp > /dev/null 2>&1 &
 set rtlTcpPid (jobs -lp)
@@ -43,7 +45,7 @@ end
 
 echo ""
 set_color green
-echo "["(date)"]"
+echo "["(date --iso-8601) (date +"%T %Z")"]"
 echo "Consumption for meter $meterId is $consumption." 
 echo "Posting consumption to SQL container." 
 
