@@ -26,7 +26,7 @@ set rtlTcpPid (jobs -lp)
 sleep 2
 
 function readMeter 
-    ./bin/rtlamr -format=json -msgtype=r900 -filterid="$meterId" --single | jq '.Message.Consumption / 10'
+    rtlamr -format=json -msgtype=r900 -filterid="$meterId" --single | jq '.Message.Consumption / 10'
 end 
 
 # Run rtlamr and read the meter
