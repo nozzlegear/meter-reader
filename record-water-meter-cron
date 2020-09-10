@@ -1,0 +1,8 @@
+# Copy this file to the /etc/cron.d/ folder
+SHELL=/bin/sh
+SCRIPT=SET_SCRIPT_PATH_HERE
+WATER_METER_SQL_PASSWORD=SET_PASSWORD_HERE
+
+# Run at 7:30, 13:30 and 19:30 every day
+30 7,13,19 * * * root /usr/bin/env fish "$SCRIPT" >> /var/log/meter-reader.log 2>&1
+
