@@ -43,7 +43,8 @@ end
 
 echo ""
 set_color green
-echo "Consumption for meter $meterId is $consumption." # -foregroundcolor green 
+echo "["(date)"]"
+echo "Consumption for meter $meterId is $consumption." 
 echo "Posting consumption to SQL container." 
 
 docker exec -it meter-reader_sql_1 /opt/mssql-tools/bin/sqlcmd -b -V16 -S localhost -U SA -P "$WATER_METER_SQL_PASSWORD" -Q "insert into WaterMeterUsage (Date, Usage) VALUES (getdate(), $consumption)"
